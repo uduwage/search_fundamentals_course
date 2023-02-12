@@ -115,9 +115,16 @@ def index_file(file, index_name):
         if 'productId' not in doc or len(doc['productId']) == 0:
             continue
         #### Step 2.b: Create a valid OpenSearch Doc and bulk index 2000 docs at a time
-        the_doc = None
+        the_doc = {'_index': index_name, '_id':doc['sku'][0], '_source' : doc}
         docs.append(the_doc)
-
+        docs_indexed += 1
+        if idx % 2000 == 0:
+            bulk(client, docs, request_timeout=60)
+            logger.info(f'{idx} documents indexed')
+            docs = []        
+    if len(docs) > 0:
+        bulk(client, docs, request_timeout=60)
+        logger.info(f'Done indexing {docs_indexed} records.')
     return docs_indexed
 
 @click.command()
