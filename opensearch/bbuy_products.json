@@ -5,33 +5,28 @@
   "mappings": {
     "name": {
       "type": "text",
+      "analyzer": "english",
       "fields": {
         "keyword": {
           "type": "keyword",
-          "ignore_above": 1500
+          "ignore_above": 2048
         }
       }
     },
     "shortDescription": {
       "type": "text",
-      "analyzer": "english",
-      "fields": {
-        "keyword": {
-          "type": "keyword"
-        }
-      }      
+      "analyzer": "english"
     },
     "longDescription": {
       "type": "text",
-      "analyzer": "english",
-      "fields": {
-        "keyword": {
-          "type": "keyword"
-        }
-      }      
+      "analyzer": "english"
     },
     "regularPrice": {
       "type": "float"
-    }
+    },
+    "description": {
+      "type": "text",
+      "analyzer": "english"
+    }    
   }
 }
