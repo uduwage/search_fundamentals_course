@@ -2,31 +2,18 @@
   "settings": {
     "index.refresh_interval": "5s"
   },
-  "mappings": {
-    "name": {
-      "type": "text",
-      "analyzer": "english",
-      "fields": {
-        "keyword": {
-          "type": "keyword",
-          "ignore_above": 2048
+  "mappings":{
+    "properties": {
+      "name": {
+        "type": "text",
+        "analyzer": "english",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 2000
+          }
         }
       }
-    },
-    "shortDescription": {
-      "type": "text",
-      "analyzer": "english"
-    },
-    "longDescription": {
-      "type": "text",
-      "analyzer": "english"
-    },
-    "regularPrice": {
-      "type": "float"
-    },
-    "description": {
-      "type": "text",
-      "analyzer": "english"
-    }    
+    }
   }
 }
