@@ -13,7 +13,42 @@
             "ignore_above": 2000
           }
         }
-      }
+      },
+      "shortDescription": {
+        "type": "text",
+        "analyzer": "english"
+      },
+      "shortDescriptionHtml": {
+        "type": "keyword"
+      },
+      "longDescription": {
+        "type": "text",
+        "analyzer": "english"
+      },
+      "longDescriptionHtml": {
+        "type": "keyword"
+      },
+      "regularPrice": {
+        "type": "float"
+      },
+      "tags": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "sku": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      }                              
     }
   }
 }
