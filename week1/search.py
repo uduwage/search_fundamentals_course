@@ -117,7 +117,7 @@ def create_query(user_query, filters, sort="_score", sortDir="desc"):
                             {
                                 "query_string": {
                                     "query": user_query,
-                                    "fields": ["name", "shortDescription", "longDescription"],
+                                    "fields": ["name^100", "shortDescription^50", "longDescription^10"],
                                     "phrase_slop": 2
                                 }
                             }
@@ -125,8 +125,8 @@ def create_query(user_query, filters, sort="_score", sortDir="desc"):
                         "filter": filters
                     }
                 },
-                "boost_mode": "replace",
-                "score_mode": "multiply",
+                "boost_mode": "multiply",
+                "score_mode": "max",
                 "functions": [
                     {
                         "field_value_factor": {
@@ -154,7 +154,16 @@ def create_query(user_query, filters, sort="_score", sortDir="desc"):
                             "modifier": "reciprocal"
 
                         }
-                    }
+                    },
+                    {
+                        "field_value_factor": {
+                            "field": "customerReviewCount",
+                            "factor": 2,
+                            "missing": 1,
+                            "modifier": "square"
+
+                        }
+                    }                    
                 ]
             }
         },
